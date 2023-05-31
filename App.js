@@ -1,17 +1,17 @@
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useCallback, useEffect, useState } from "react";
 import { Text, View } from "react-native";
+import * as Font from "expo-font";
+import { Ionicons } from "@expo/vector-icons";
+import { Asset } from "expo-asset";
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   const onFinish = () => setReady(true);
   async function prepare() {
     try {
-      // Pre-load fonts, make any API calls you need to do here
-      // await Font.loadAsync(Entypo.font);
-      // Artificially delay for two seconds to simulate a slow loading
-      // experience. Please remove this if you copy and paste the code!
-      await new Promise(resolve => setTimeout(resolve, 5000));
+      await Font.loadAsync(Ionicons.font);
+      await Asset.loadAsync(require("./dog-face.webp"));
     } catch (e) {
       console.warn(e);
     } finally {
