@@ -5,13 +5,17 @@ import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { Asset } from "expo-asset";
 
+const loadFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
+
+const loadImages = (images) => images.map((image) => Asset.loadAsync(image));
+
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
-  const onFinish = () => setReady(true);
   async function prepare() {
     try {
-      await Font.loadAsync(Ionicons.font);
-      await Asset.loadAsync(require("./dog-face.webp"));
+      const fonts = loadFonts([Ionicons.font]);
+      const images = loadImages([require("./dog-face.webp")]);
+      await Promise.all([...fonts, ...images]);
     } catch (e) {
       console.warn(e);
     } finally {
