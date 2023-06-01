@@ -4,6 +4,8 @@ import { Text, View } from "react-native";
 import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { Asset } from "expo-asset";
+import { NavigationContainer } from "@react-navigation/native";
+import Tabs from "./navigation/Tabs";
 
 const loadFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
 
@@ -42,10 +44,8 @@ export default function App() {
   }
 
   return (
-    <View
-      style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-      onLayout={onLayoutRootView}>
-      <Text>SplashScreen Demo! 👋</Text>
-    </View>
+    <NavigationContainer>
+      <Tabs />
+    </NavigationContainer>
   );
 }
