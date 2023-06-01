@@ -5,6 +5,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { Asset } from "expo-asset";
 import { NavigationContainer } from "@react-navigation/native";
 import Root from './navigation/Root';
+import { useColorScheme } from "react-native";
+import { ThemeProvider } from "styled-components/native";
+import { darkTheme, lightTheme } from "./styled";
 
 const loadFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
 
@@ -12,6 +15,7 @@ const loadImages = (images) => images.map((image) => Asset.loadAsync(image));
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
+  const isDark = useColorScheme() === "dark";
   async function prepare() {
     try {
       const fonts = loadFonts([Ionicons.font]);
@@ -43,8 +47,10 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Root />
-    </NavigationContainer>
+    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+      <NavigationContainer>
+        <Root />
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
