@@ -8,7 +8,7 @@ import HMedia from "../components/HMedia";
 import Slide from "../components/Slide";
 import Loader from "../components/Loader";
 import HList from "../components/HList";
-import { MovieResponse, moviesApi } from "../api";
+import { moviesApi } from "../api";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -19,17 +19,10 @@ const ListTitle = styled.Text`
   margin-left: 30px;
 `;
 
-const ListContainer = styled.View`
-  margin-bottom: 40px;
-`;
-
 const ComingSoonTitle = styled(ListTitle)`
   margin-bottom: 20px;
 `;
 
-const VSeparator = styled.View`
-  width: 20px;
-`;
 const HSeparator = styled.View`
   height: 20px;
 `;
