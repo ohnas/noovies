@@ -19,14 +19,14 @@ const SearchBar = styled.TextInput`
 const Search = () => {
   const [query, setQuery] = useState("");
   const {
-    isLoading: moviesLoading,
+    isInitialLoading: moviesLoading,
     data: moviesData,
     refetch: searchMovies,
   } = useQuery(["searchMovies", query], moviesApi.search, {
     enabled: false,
   });
   const {
-    isLoading: tvLoading,
+    isInitialLoading: tvLoading,
     data: tvData,
     refetch: searchTv,
   } = useQuery(["searchTv", query], tvApi.search, {
