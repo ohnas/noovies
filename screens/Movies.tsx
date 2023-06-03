@@ -1,19 +1,14 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
-import { ActivityIndicator, Dimensions, FlatList } from "react-native";
+import { Dimensions, FlatList } from "react-native";
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import styled from "styled-components/native";
 import Swiper from "react-native-swiper";
 import HMedia from "../components/HMedia";
 import Slide from "../components/Slide";
 import VMedia from "../components/VMedia";
+import Loader from "../components/Loader";
 import { MovieResponse, moviesApi } from "../api";
-
-const Loader = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -22,10 +17,6 @@ const ListTitle = styled.Text`
   font-size: 18px;
   font-weight: 600;
   margin-left: 30px;
-`;
-
-const TrendingScroll = styled.FlatList`
-  margin-top: 20px;
 `;
 
 const ListContainer = styled.View`
@@ -66,9 +57,7 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
   const loading = nowPlayingLoading || upcomingLoading || trendingLoading;
   const refreshing = isRefetchingNowPlaying || isRefetchingUpcoming || isRefetchingTrending;
   return loading ? (
-    <Loader>
-      <ActivityIndicator />
-    </Loader>
+    <Loader />
   ) : upcomingData ? (
     <FlatList
       onRefresh={onRefresh}
