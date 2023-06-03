@@ -7,7 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Root from './navigation/Root';
 import { useColorScheme } from "react-native";
 import { ThemeProvider } from "styled-components/native";
-import { darkTheme, lightTheme } from "./styled";
+import { darkTheme, lightTheme } from './styled';
 import {
   QueryClient,
   QueryClientProvider,
@@ -15,9 +15,15 @@ import {
 
 const queryClient = new QueryClient();
 
-const loadFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
+const loadFonts = (
+  fonts:
+    | string[]
+    | {
+        [fontFamily: string]: Font.FontSource;
+      }[]
+) => fonts.map((font) => Font.loadAsync(font));
 
-const loadImages = (images) => images.map((image) => Asset.loadAsync(image));
+const loadImages = (images: number[] | number[][]) => images.map((image) => Asset.loadAsync(image));
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);

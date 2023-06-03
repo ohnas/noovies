@@ -24,8 +24,7 @@ const Overview = styled.Text`
 const Release = styled.Text`
   color: white;
   font-size: 12px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px 0px;
   font-weight: 500;
   opacity: 0.6;
 `;
@@ -53,6 +52,7 @@ const HMedia: React.FC<HMediaProps> = ({
 }) => {
   const navigation = useNavigation();
   const goToDetail = () => {
+    //@ts-ignore
     navigation.navigate("Stack", { screen: "Detail" });
   };
   return (
